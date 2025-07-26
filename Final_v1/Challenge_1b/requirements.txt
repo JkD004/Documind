@@ -1,0 +1,17 @@
+# PDF Processing
+PyMuPDF # (fitz) - Highly recommended for fast and robust PDF text extraction and layout analysis
+# If you prefer, you could use pdfminer.six instead of PyMuPDF, but PyMuPDF is generally faster and more feature-rich.
+# pdfminer.six
+
+# Natural Language Processing (NLP)
+spacy==3.5.0 # Specify a version to ensure reproducibility. Later versions might be fine too.
+# You will also need to download a spaCy model.
+# Example: en_core_web_sm (small English model) - typically < 1GB
+# This should be done as part of your Dockerfile build process, e.g.:
+# RUN python -m spacy download en_core_web_sm
+
+# General Utilities
+numpy==1.23.5 # Often a dependency for NLP and data manipulation libraries
+pandas # Useful for data handling, though might not be strictly necessary depending on your approach
+scikit-learn # If you plan to use any machine learning algorithms for ranking or feature extraction (e.g., TF-IDF, cosine similarity)
+sentence-transformers

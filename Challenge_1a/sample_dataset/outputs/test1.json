@@ -1,0 +1,75 @@
+{
+  "title": "Application form for grant of LTC advance",
+  "outline": [
+    {
+      "level": "H3",
+      "text": "Name of the Government Servant",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Designation",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Date of entering the Central Government",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Service",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "PAY + SI + NPA",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Whether permanent or temporary",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Home Town as recorded in the Service Book",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Whether wife / husband is employed and if",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Whether the concession is to be availed for",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "LTC is to be availed.",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Single",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "S.No",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Amount of advance required.",
+      "page": 1
+    },
+    {
+      "level": "H2",
+      "text": "Date",
+      "page": 1
+    }
+  ]
+}

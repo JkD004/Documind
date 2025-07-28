@@ -1,0 +1,7 @@
+PyMuPDF==1.23.8 # fitz library
+Pillow==10.3.0
+pytesseract==0.3.10
+numpy==1.26.4
+opencv-python==4.9.0.80
+scikit-learn==1.4.2 # For TF-IDF
+scipy==1.13.0

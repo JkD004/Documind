@@ -1,43 +1,42 @@
-```markdown
 # Challenge 1a: PDF Title and Outline Extraction
 
 ---
 
-##  Overview
+## 🧠 Overview
 
-Our repository provides a Dockerized solution for **extracting structured titles and outlines from PDF documents** using a hybrid of vector-based text extraction and OCR (Tesseract). It is built for Challenge 1a of the Adobe India Hackathon 2025.
+This repository provides a **Dockerized solution** for extracting structured titles and outlines from PDF documents. It utilizes a hybrid of **vector-based text extraction** (using PyMuPDF) and **OCR fallback** (using Tesseract) to handle both digitally-generated and scanned/image PDFs.
 
----
-
-##  Features
-
-- Smart heading detection based on font size, indentation, and layout
--  OCR fallback for image-based or scanned PDFs
--  Automatic extraction of document titles and hierarchical outlines
--  Fully containerized using Docker for reproducibility
--  Outputs per-PDF JSON files conforming to the expected schema
+> Designed for **Challenge 1a of the Adobe India Hackathon 2025**.
 
 ---
 
-##  Directory Structure
+## ✨ Features
 
+- 📌 Smart heading detection using font size, indentation, and layout cues  
+- 🧾 OCR fallback for scanned or image-based PDFs  
+- 📂 Automatic extraction of document title and hierarchical outlines  
+- 🐳 Fully containerized using Docker for reproducibility  
+- 📤 JSON output per PDF, conforming to a standardized schema  
+
+---
+
+## 🗂 Directory Structure
+---
+```
+Challenge_1a/
+├── sample_dataset/
+│ ├── pdfs/ # Input PDF files
+│ ├── outputs/ # Output JSON files
+│ └── schema/ # Output schema definition
+│ └── output_schema.json
+├── process_pdfs.py # Main PDF processing script
+├── Dockerfile # Docker build configuration
+└── README.md # Project documentation
 ```
 
-Challenge\_1a/
-├── sample\_dataset/
-│   ├── pdfs/            \# Input PDF files
-│   ├── outputs/         \# Output JSON files
-│   └── schema/          \# Output schema definition (if applicable)
-│       └── output\_schema.json
-├── process\_pdfs.py      \# Main PDF processing script
-├── Dockerfile           \# Docker build configuration
-└── README.md            \# Project documentation
-
-````
-
 ---
 
-##  Dependencies
+## 📦 Dependencies
 
 - Python 3.10
 - [PyMuPDF (`fitz`)](https://pymupdf.readthedocs.io/)
@@ -46,20 +45,20 @@ Challenge\_1a/
 - Pillow
 - NumPy
 
-> All dependencies are automatically installed via Docker.
+> ✅ All dependencies are automatically installed within the Docker container.
 
 ---
 
-##  Getting Started
+## 🚀 Getting Started
 
-### 1️ Build Docker Image
+### 🔧 1. Build Docker Image
 
 ```bash
 docker build --platform linux/amd64 -t pdf-outline-extractor .
-````
+```
+### 2. **Run the container**
 
-### 2️ Run the Container
-
+Example for folder `collection_1`:
 ```bash
 docker run --rm \
   -v $(pwd)/sample_dataset/pdfs:/app/sample_dataset/pdfs:ro \
@@ -67,64 +66,36 @@ docker run --rm \
   pdf-outline-extractor
 ```
 
- All PDFs in `sample_dataset/pdfs/` will be processed.
- JSON output will be saved to `sample_dataset/outputs/`.
+-📥 All PDFs in sample_dataset/pdfs/ will be processed.
+-📤 Output JSONs will be saved in sample_dataset/outputs/.
 
------
 
-##  Output Format
+###🔍 How It Works
+*🧠 Uses vector text spans (font size, boldness, indentation) to identify heading candidates
 
-Each `.json` file (one per PDF) has the following structure:
+*🔁 Fallbacks to OCR for scanned or image-based PDFs (Tesseract)
 
-```json
-{
-  "title": "Detected Title of the Document",
-  "outline": [
-    {
-      "level": "H1",
-      "text": "Main Section Title",
-      "page": 1
-    },
-    {
-      "level": "H2",
-      "text": "Subsection Title",
-      "page": 2
-    }
-    // ... more items
-  ]
-}
-```
+*🎯 Title is detected from the top 1/3 of the first page using large or bold text
 
-Output conforms to the schema defined in `sample_dataset/schema/output_schema.json`.
+*📑 Handles multi-line headings and bullet merges
 
------
+##📈 Performance & Constraints
+*⚙️ Pure CPU-based solution (no GPU required)
 
-## How It Works
+*🖥️ Works on AMD64 (x86) systems
 
-  - Uses vector text spans (font size, indentation) from PDFs to detect heading candidates
-  - Falls back to OCR if vector data is missing or incomplete
-  - Titles are extracted from the top 1/3 of the first page, prioritizing bold or large text
-  - Merges consecutive bullet points intelligently to form full heading lines
+*🚀 Optimized to process PDFs < 50 pages in under 10 seconds (system-dependent)
 
------
+*📡 Does not require internet access
 
-## Performance & Constraints
+##✅ Validation Checklist
+ *Extracts titles and hierarchical outlines
 
-  -  Pure CPU solution (no GPU or internet required)
-  -  Works on AMD64 (x86) architecture
-  -  Optimized for processing PDFs \< 50 pages in under 10 seconds (depends on system)
+* Supports both vector-based and scanned PDFs
 
------
+* Fully containerized, no manual intervention required
 
-##  Validation Checklist
+* Schema-compliant JSON outputs
 
-  - Extracts titles and hierarchical outlines
-  - Works with both vector-based and scanned/image PDFs
-  - Fully containerized and self-contained
-  - Schema-compliant JSON output per PDF
-  - Processes all `.pdf` files in the input directory
-  - Requires no manual input or modification
+ *Automatically processes all .pdf files in the input directory
 
------
-
-```
